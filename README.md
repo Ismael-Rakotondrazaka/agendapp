@@ -1,14 +1,7 @@
-# agendapp
+# Agendapp
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Don't know how to manage your schedule or how to do it? Agendapp to the rescue! We offer an app that will make your life easier.\
+See [https://agendapp.onrender.com](https://agendapp.onrender.com) and enjoy :sunglasses:.
 
 ## Project Setup
 

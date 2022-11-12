@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-main {
+  --color-primary: 117 37 164;
+  --color-danger: 255 10 84;
+  --color-success: 0 197 105;
+  --color-info: 13 117 248;
+  --color-warning: 254 225 46;
+}
