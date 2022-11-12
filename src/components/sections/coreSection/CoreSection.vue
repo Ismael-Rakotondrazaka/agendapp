@@ -11,7 +11,7 @@
         rounded-md
       "
     >
-      <span class="font-bold">
+      <span class="font-nunito-bold">
         {{ title }}
       </span>
     </p>

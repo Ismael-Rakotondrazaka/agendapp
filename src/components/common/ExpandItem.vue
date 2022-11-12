@@ -9,7 +9,7 @@
         w-full
         p-3
         text-lg
-        font-bold
+        font-nunito-bold
         hover:bg-primary hover:text-white
       "
       :class="[computedExpandClass, props.expandClass]"

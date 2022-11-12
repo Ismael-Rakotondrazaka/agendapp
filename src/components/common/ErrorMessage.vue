@@ -4,7 +4,7 @@
       <fa-icon icon="exclamation-circle" />
     </i>
 
-    <h3 class="text-red-700 font-bold">Oups ! An error occurred.</h3>
+    <h3 class="text-red-700 font-nunito-bold">Oups ! An error occurred.</h3>
 
     <p class="text-red-700">
       {{ errorMessage }}
