@@ -10,7 +10,7 @@
       </div>
       <div class="flex flex-row items-start justify-between">
         <div>
-          <h2 class="text-xl font-bold text-left">
+          <h2 class="text-xl font-nunito-bold text-left">
             {{ props.event.title }}
           </h2>
 
@@ -33,7 +33,7 @@
         class="flex flex-row flex-wrap items-start gap-3 mb-3"
       >
         <div class="w-full">
-          <p class="mb-2 font-bold text-left">
+          <p class="mb-2 font-nunito-bold text-left">
             <span class="inline-block mr-2 font-normal underline">Level:</span>
             {{ props.event.level }}
             <i
@@ -43,7 +43,7 @@
               <fa-icon icon="star" />
             </i>
           </p>
-          <p class="mb-2 font-bold text-left">
+          <p class="mb-2 font-nunito-bold text-left">
             <span class="inline-block mr-2 font-normal underline">Status:</span>
             {{ statusText }}
             <i class="inline-block ml-2 font-normal">
@@ -85,7 +85,7 @@
           w-full
           py-3
           pl-3
-          font-bold
+          font-nunito-bold
           text-left
           hover:underline
           underline-offset-4
@@ -97,14 +97,14 @@
 
       <div v-if="isShowMore" class="pb-3">
         <div class="pl-3" :class="[props.event.status === 'pending' && 'mb-5']">
-          <p class="mb-2 font-bold text-left">
+          <p class="mb-2 font-nunito-bold text-left">
             <span class="inline-block mr-2 font-normal underline">
               Created on:
             </span>
             {{ formattedDateTimes.createdAt }}
           </p>
 
-          <p class="mb-2 font-bold text-left">
+          <p class="mb-2 font-nunito-bold text-left">
             <span class="inline-block mr-2 font-normal underline">
               Updated on:
             </span>
@@ -148,7 +148,7 @@
               py-3
               pl-3
               mb-3
-              font-bold
+              font-nunito-bold
               text-left
               underline underline-offset-4
               bg-white/20
@@ -177,7 +177,7 @@
               py-3
               pl-3
               mb-3
-              font-bold
+              font-nunito-bold
               text-left
               underline underline-offset-4
               bg-white/20

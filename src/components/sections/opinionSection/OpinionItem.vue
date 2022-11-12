@@ -26,7 +26,7 @@
       <p
         class="
           text-xl text-center
-          font-bold
+          font-nunito-bold
           text-primary
           group-hover:text-white
         "

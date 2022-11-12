@@ -32,7 +32,7 @@
       }"
       class="hover:bg-primary max-w-md group mx-3"
     >
-      <h1 class="font-bold text-2xl text-center mb-3 group-hover:text-white">
+      <h1 class="font-nunito-bold text-2xl text-center mb-3 group-hover:text-white">
         Agendapp
       </h1>
 
@@ -52,7 +52,7 @@
         <a
           href="https://github.com/Ismael-Rakotondrazaka"
           target="_blank"
-          class="text-black font-bold hover:underline group-hover:text-white"
+          class="text-black font-nunito-bold hover:underline group-hover:text-white"
           >Ismael</a
         >.
         <br />

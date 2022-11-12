@@ -3,7 +3,7 @@
     <router-link
       :to="props.to"
       class="
-        font-bold
+        font-nunito-bold
         text-slate-800 text-xl
         hover:underline hover:underline-offset-4
       "

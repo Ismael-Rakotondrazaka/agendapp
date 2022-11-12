@@ -9,3 +9,32 @@
   --color-info: 13 117 248;
   --color-warning: 254 225 46;
 }
+
+/* 
+ * Nunito
+ */
+
+ @font-face {
+  font-family: "NunitoMedium";
+  src: url("../../src/assets/fonts/Nunito-Medium.ttf");
+}
+
+@font-face {
+  font-family: "NunitoLight";
+  src: url("../../src/assets/fonts/Nunito-Light.ttf");
+}
+
+@font-face {
+  font-family: "NunitoSemiBold";
+  src: url("../../src/assets/fonts/Nunito-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "NunitoBold";
+  src: url("../../src/assets/fonts/Nunito-Bold.ttf");
+}
+
+@font-face {
+  font-family: "NunitoRegular";
+  src: url("../../src/assets/fonts/Nunito-Regular.ttf");
+}
