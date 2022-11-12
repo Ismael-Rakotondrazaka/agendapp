@@ -42,7 +42,7 @@
         <h2
           class="
             text-primary text-xl
-            font-bold
+            font-nunito-bold
             text-center
             underline underline-offset-4
             bg-white
@@ -79,7 +79,7 @@
         <h2
           class="
             text-primary text-xl
-            font-bold
+            font-nunito-bold
             text-center
             underline underline-offset-4
             bg-white
@@ -121,7 +121,7 @@
         <h2
           class="
             text-primary text-xl
-            font-bold
+            font-nunito-bold
             text-center
             underline underline-offset-4
             bg-white

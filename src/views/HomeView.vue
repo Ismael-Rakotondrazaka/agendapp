@@ -26,7 +26,7 @@
               delay: 200,
             },
           }"
-          class="mb-5 text-5xl font-bold"
+          class="mb-5 text-5xl font-nunito-bold"
         >
           Keep your time in your hands.
         </h1>

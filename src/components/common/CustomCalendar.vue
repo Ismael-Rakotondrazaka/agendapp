@@ -5,7 +5,7 @@
         class="
           w-full
           py-3
-          font-bold
+          font-nunito-bold
           text-white text-slate-8
           bg-primary
           hover:underline

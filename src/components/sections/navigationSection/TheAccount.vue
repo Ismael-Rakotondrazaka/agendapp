@@ -15,19 +15,19 @@
       <ul>
         <li class="mb-2 last:mb-0">
           <span class="mr-2 text-black underline">Full name: </span>
-          <span class="font-bold text-primary">{{
+          <span class="font-nunito-bold text-primary">{{
             userStore.user?.fullName
           }}</span>
         </li>
         <li class="mb-2 last:mb-0">
           <span class="mr-2 text-black underline">Email address: </span>
-          <span class="font-bold text-primary">
+          <span class="font-nunito-bold text-primary">
             {{ userStore.user?.email }}
           </span>
         </li>
         <li class="mb-2 last:mb-0">
           <span class="mr-2 text-black underline">Member since: </span>
-          <span class="font-bold text-primary">
+          <span class="font-nunito-bold text-primary">
             {{ formattedCreatedAt }}
           </span>
         </li>

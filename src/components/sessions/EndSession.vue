@@ -5,7 +5,7 @@
       w-full
       p-3
       text-lg
-      font-bold
+      font-nunito-bold
       text-left
       bg-red-40
       rounded-b-md

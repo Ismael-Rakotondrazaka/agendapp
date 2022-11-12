@@ -3,6 +3,7 @@ import LoginView from "../views/auth/LoginView.vue";
 import RegisterView from "../views/auth/RegisterView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import AboutView from "../views/AboutView.vue";
+import NotFoundView from "../views/NotFoundView.vue";
 import { useTokenStore } from "../stores/token";
 
 import { createRouter, createWebHistory } from "vue-router";
@@ -46,6 +47,14 @@ const routes = [
     component: DashboardView,
     meta: {
       title: "Agendapp | Dashboard",
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notfound",
+    component: NotFoundView,
+    meta: {
+      title: "Agendapp | Not found",
     },
   },
 ];

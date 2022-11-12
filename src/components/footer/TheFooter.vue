@@ -8,7 +8,7 @@
           class="
             mb-1
             text-2xl
-            font-bold
+            font-nunito-bold
             text-white
             underline underline-white underline-offset-4
           "
@@ -45,7 +45,7 @@
           class="
             mb-1
             text-2xl
-            font-bold
+            font-nunito-bold
             text-white
             underline underline-white underline-offset-4
           "
