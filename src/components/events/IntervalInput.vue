@@ -39,6 +39,8 @@
           class="mb-2 custom-time-picker"
           v-model="startAtDate"
           :minute-increment="15"
+          :valid-hours="validHours"
+          is24hr
         ></v-date-picker>
       </div>
 
@@ -51,6 +53,8 @@
           class="mb-2 custom-time-picker"
           v-model="endAtDate"
           :minute-increment="15"
+          :valid-hours="validHours"
+          is24hr
         ></v-date-picker>
       </div>
     </div>
@@ -76,11 +80,13 @@
 <script setup>
 import { isSameDay, formatTime, isInConflict } from "@/utils/dates";
 import { useEventStore } from "@/stores/event.js";
+import { useDateStore } from "@/stores/date.js";
 import { useReset, useDefaultReset, useValidation } from "@/utils/composables";
 
 import { ref, computed } from "vue";
 
 const eventStore = useEventStore();
+const dateStore = useDateStore();
 
 const props = defineProps({
   default: {
@@ -115,8 +121,8 @@ const props = defineProps({
   actualEvent: {
     type: [Object, null],
     required: false,
-    default: null
-  }
+    default: null,
+  },
 });
 
 const emit = defineEmits(["interval:valid", "interval:invalid", "resettled"]);
@@ -150,7 +156,8 @@ const intervalsClearedOnThisDay = computed(() =>
   props.reason === "edit"
     ? intervalsOnThisDay.value.filter((interval) => {
         return (
-          interval.startAt.getTime() !== props.actualEvent?.startAt?.getTime() &&
+          interval.startAt.getTime() !==
+            props.actualEvent?.startAt?.getTime() &&
           interval.endAt.getTime() !== props.actualEvent?.endAt?.getTime()
         );
       })
@@ -194,8 +201,31 @@ const defaultValidator = (newValue) => {
     result = "Interval is required.";
   }
 
+  if (
+    newValue.startAt &&
+    dateStore.date.getTime() > newValue.startAt.getTime()
+  ) {
+    result = "The starting time should be in the future.";
+  }
+
   return result;
 };
+
+const validHours = computed(() => {
+  let result = [];
+
+  let start = 0;
+
+  if (dateStore.isToday(props.day)) {
+    start = dateStore.date.getHours();
+  }
+
+  for (let i = start; i < 24; i++) {
+    result.push(i);
+  }
+
+  return result;
+});
 
 const resetData = () => {
   startAtDate.value = props.default.startAt;
