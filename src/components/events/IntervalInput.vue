@@ -216,7 +216,10 @@ const validHours = computed(() => {
 
   let start = 0;
 
-  if (dateStore.isToday(props.day)) {
+  if (
+    props.default?.startAtDate &&
+    dateStore.isToday(props.default?.startAtDate)
+  ) {
     start = dateStore.date.getHours();
   }
 
