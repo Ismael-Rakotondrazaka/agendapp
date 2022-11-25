@@ -5,7 +5,7 @@
         class="
           w-full
           py-3
-          font-nunito-bold
+          font-rubik-bold
           text-slate-8
           bg-primary
           text-white

@@ -25,7 +25,7 @@
       class="max-w-md mx-3 hover:bg-primary group"
     >
       <h1
-        class="mb-3 text-2xl text-center  font-nunito-bold text-danger group-hover:text-white"
+        class="mb-3 text-2xl text-center  font-rubik-bold text-danger group-hover:text-white"
       >
         <i class="mr-3">
           <fa-icon icon="warning" />
@@ -39,7 +39,7 @@
         The link
         <a
           :href="url"
-          class="text-danger font-nunito-bold hover:underline group-hover:text-white"
+          class="text-danger font-rubik-bold hover:underline group-hover:text-white"
         >
           {{ url }}
         </a>
