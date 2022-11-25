@@ -20,17 +20,17 @@ module.exports = {
         success: withOpacityValue("--color-success"),
       },
       fontFamily: {
-        "nunito-medium": ["NunitoMedium", "Helvetica", "Arial", "sans-serif"],
-        "nunito-bold": ["NunitoBold", "Helvetica", "Arial", "sans-serif"],
-        "nunito-light": ["NunitoLight", "Helvetica", "Arial", "sans-serif"],
-        "nunito-semibold": [
-          "NunitoSemiBold",
+        "rubik-medium": ["RubikMedium", "Helvetica", "Arial", "sans-serif"],
+        "rubik-bold": ["RubikBold", "Helvetica", "Arial", "sans-serif"],
+        "rubik-light": ["RubikLight", "Helvetica", "Arial", "sans-serif"],
+        "rubik-semibold": [
+          "RubikSemiBold",
           "Helvetica",
           "Arial",
           "sans-serif",
         ],
-        "nunito-regular": [
-          "NunitoRegular",
+        "rubik-regular": [
+          "RubikRegular",
           "sans-serif",
           "Helvetica",
           "Arial",

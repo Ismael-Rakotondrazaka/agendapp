@@ -4,7 +4,7 @@
       class="
         text-primary text-center text-2xl
         mb-5
-        font-nunito-bold
+        font-rubik-bold
         underline underline-offset-8
         group-hover:text-white
       "
