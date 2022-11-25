@@ -140,6 +140,7 @@ const validDateHandler = (newValue) => {
 };
 const invalidDateHandler = (errorMessage) => {
   errors.value.date = errorMessage;
+  date.value = null;
   startAtDate.value = null;
   endAtDate.value = null;
 };
@@ -208,6 +209,7 @@ const createEventHandler = async () => {
         level: level.value,
         startAt: startAtDate.value,
         endAt: endAtDate.value,
+        timezoneOffset: new Date().getTimezoneOffset(),
       };
 
       await eventStore.storeEvent(data);

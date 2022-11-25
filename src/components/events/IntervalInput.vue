@@ -33,29 +33,72 @@
           Select the starting time:
         </label>
 
-        <v-date-picker
-          is-expanded
-          mode="time"
-          class="mb-2 custom-time-picker"
-          v-model="startAtDate"
-          :minute-increment="15"
-          :valid-hours="validHours"
-          is24hr
-        ></v-date-picker>
+        <div class="text-center border-2 py-3 border-slate-200 rounded-md">
+          <p class="mb-2">{{ intervalFormatted.startAt }}</p>
+
+          <select
+            v-model="startAtHours"
+            class="px-2 py-2 rounded-md text-black"
+          >
+            <option
+              v-for="startHoursOption in startHoursOptions"
+              :key="startHoursOption"
+            >
+              {{ startHoursOption }}
+            </option>
+          </select>
+          :
+          <select
+            v-model="startAtMinutes"
+            class="px-2 py-2 rounded-md text-black"
+          >
+            <option
+              v-for="startMinutesOption in startMinutesOptions"
+              :key="startMinutesOption"
+            >
+              {{ startMinutesOption }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div class="w-full">
         <label for="" class="inline-block mb-1">Select the ending time:</label>
 
-        <v-date-picker
-          is-expanded
-          mode="time"
-          class="mb-2 custom-time-picker"
-          v-model="endAtDate"
-          :minute-increment="15"
-          :valid-hours="validHours"
-          is24hr
-        ></v-date-picker>
+        <div class="text-center border-2 py-3 border-slate-200 rounded-md">
+          <p class="mb-2">{{ intervalFormatted.endAt }}</p>
+
+          <select v-model="endAtHours" class="px-2 py-2 rounded-md text-black">
+            <option
+              v-for="endHoursOption in endHoursOptions"
+              :key="endHoursOption"
+            >
+              {{ endHoursOption }}
+            </option>
+          </select>
+          :
+          <select
+            v-model="endAtMinutes"
+            class="px-2 py-2 rounded-md text-black"
+          >
+            <option
+              v-for="endMinutesOption in endMinutesOptions"
+              :key="endMinutesOption"
+            >
+              {{ endMinutesOption }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div
+        v-if="isDefaultChanged.startAt || isDefaultChanged.endAt"
+        class="mt-2"
+      >
+        <p class="f">
+          * The interval is corrected because the event was created in different
+          timezone.
+        </p>
       </div>
     </div>
 
@@ -78,12 +121,12 @@
 </template>
 
 <script setup>
-import { isSameDay, formatTime, isInConflict } from "@/utils/dates";
+import { isSameDay, formatTime, isInConflict, formatDate } from "@/utils/dates";
 import { useEventStore } from "@/stores/event.js";
 import { useDateStore } from "@/stores/date.js";
 import { useReset, useDefaultReset, useValidation } from "@/utils/composables";
 
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 
 const eventStore = useEventStore();
 const dateStore = useDateStore();
@@ -127,14 +170,163 @@ const props = defineProps({
 
 const emit = defineEmits(["interval:valid", "interval:invalid", "resettled"]);
 
-const startAtDate = ref(props.default.startAt);
+const isDefaultChanged = ref({
+  startAt: false,
+  endAt: false,
+});
 
-const endAtDate = ref(props.default.endAt);
+const defaultInterval = computed(() => {
+  let result = {
+    startAt: props.default.startAt,
+    endAt: props.default.endAt,
+  };
+
+  // => the event is NOT created in the same timezone as now, so we round
+  if (
+    props.reason === "edit" &&
+    !isSameDay(props.default.startAt, props.default.endAt) &&
+    props.default.startAt.getHours() !== 0 &&
+    props.default.endAt.getHours() !== 0
+  ) {
+    let newEndAt = new Date(props.default.endAt);
+    newEndAt.setHours(0, 0, 0, 0);
+
+    let diffByEndMn =
+      (newEndAt.getTime() - props.default.startAt.getTime()) / 6000;
+
+    if (diffByEndMn < 15) {
+      let newStartAt = new Date(props.default.endAt);
+      newStartAt.setHours(0, 0, 0, 0);
+
+      let diffByStartMn =
+        (props.default.endAt.getTime() - newStartAt.getTime()) / 6000;
+
+      if (diffByStartMn >= 15) {
+        result.startAt = newStartAt;
+        isDefaultChanged.value.startAt = true;
+      }
+    } else {
+      result.endAt = newEndAt;
+      isDefaultChanged.value.endAt = true;
+    }
+  }
+
+  return result;
+});
+
+const startAtDate = ref(defaultInterval.value.startAt);
+const startHoursOptions = ref(
+  "00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23".split(
+    " "
+  )
+);
+const startAtHours = ref(
+  startAtDate.value?.getHours()?.toString()?.padStart(2, "0") || "00"
+);
+watch(startAtHours, (newValue) => {
+  if (newValue && startAtDate.value) {
+    const newDate = new Date(startAtDate.value);
+    newDate.setHours(+newValue); // turn newValue into number
+    startAtDate.value = newDate;
+  }
+});
+const startMinutesOptions = ref("00 15 30 45".split(" "));
+const startAtMinutes = ref(
+  startAtDate.value?.getMinutes()?.toString()?.padStart(2, "0") || "00"
+);
+watch(startAtMinutes, (newValue) => {
+  if (newValue && startAtDate.value) {
+    const newDate = new Date(startAtDate.value);
+    newDate.setMinutes(+newValue); // turn newValue into number
+    startAtDate.value = newDate;
+  }
+});
+
+const endAtDate = ref(defaultInterval.value.endAt);
+const endHoursOptions = ref(
+  "00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23"
+    .split(" ")
+    .concat("00 (of next day)")
+);
+const endAtHours = ref(
+  (() => {
+    let result = "00";
+    if (endAtDate.value) {
+      if (startAtDate.value && !isSameDay(endAtDate.value, startAtDate.value)) {
+        result = "00 (of next day)";
+      } else {
+        result = endAtDate.value.getHours().toString().padStart(2, "0");
+      }
+    }
+
+    return result;
+  })()
+);
+const endMinutesOptions = ref(
+  (() => {
+    let result = "00 15 30 45".split(" ");
+
+    if (endAtDate.value) {
+      if (startAtDate.value && !isSameDay(endAtDate.value, startAtDate.value)) {
+        result = ["00"];
+      }
+    }
+
+    return result;
+  })()
+);
+const endAtMinutes = ref(
+  endAtDate.value?.getMinutes()?.toString()?.padStart(2, "0") || "00"
+);
+watch(endAtHours, (newValue) => {
+  if (startAtDate.value && endAtDate.value) {
+    if (newValue === "00 (of next day)") {
+      const changedDate = new Date(
+        startAtDate.value.getTime() + 24 * 60 * 60 * 1000
+      );
+      changedDate.setHours(0, 0, 0, 0);
+      endAtDate.value = changedDate;
+
+      endMinutesOptions.value = ["00"];
+      endAtMinutes.value = "00";
+    } else {
+      const sameDayAsStartAt = new Date(startAtDate.value);
+      sameDayAsStartAt.setHours(+newValue);
+      endAtDate.value = sameDayAsStartAt;
+
+      endMinutesOptions.value = ["00", "15", "30", "45"];
+    }
+  }
+});
+watch(endAtMinutes, (newValue) => {
+  if (newValue && endAtDate.value) {
+    const newDate = new Date(endAtDate.value);
+    newDate.setMinutes(+newValue);
+    endAtDate.value = newDate; // turn newValue into number
+  }
+});
 
 const interval = computed(() => ({
   startAt: startAtDate.value,
   endAt: endAtDate.value,
 }));
+
+const intervalFormatted = computed(() => {
+  let result = {
+    startAt: "",
+    endAt: "",
+  };
+
+  if (startAtDate.value) {
+    result.startAt = formatDate(startAtDate.value);
+  }
+
+  if (endAtDate.value) {
+    result.endAt = formatDate(endAtDate.value);
+  }
+
+  return result;
+});
 
 const eventsOnThisDay = computed(() =>
   props.day
@@ -211,26 +403,23 @@ const defaultValidator = (newValue) => {
   return result;
 };
 
-const validHours = computed(() => {
-  let result = [];
-
-  let start = 0;
-
-  if (dateStore.isToday(props.day)) {
-    start = dateStore.date.getHours();
-  }
-
-  for (let i = start; i < 24; i++) {
-    result.push(i);
-  }
-
-  return result;
-});
-
 const resetData = () => {
-  startAtDate.value = props.default.startAt;
-  endAtDate.value = props.default.endAt;
+  startAtDate.value = defaultInterval.value.startAt;
+  endAtDate.value = defaultInterval.value.endAt;
 };
+
+watch(
+  () => props.day,
+  (newValue) => {
+    // expect a null to fullfil the condition
+    if (!newValue) {
+      startAtHours.value = "00";
+      endAtHours.value = "00";
+      startAtMinutes.value = "00";
+      endAtMinutes.value = "00";
+    }
+  }
+);
 
 const { error } = useValidation(
   interval,
@@ -242,7 +431,7 @@ const { error } = useValidation(
   }
 );
 
-useDefaultReset(() => props.default, [resetData]);
+useDefaultReset(defaultInterval, [resetData]);
 
 useReset(() => props.reset, [resetData], emit);
 
