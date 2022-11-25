@@ -13,8 +13,8 @@ export const useEventStore = defineStore("event", () => {
     Check if an array of events cover a journey.\
     But there is a few rules:
       - events must be in the same day
-      - min startAt is 0:00 AM
-      - max endAt is 0:00 AM of next day
+      - min startAt is 00:00
+      - max endAt is 00:00 of next day
   */
   const canAddEvent = (events) => {
     let result = false;
