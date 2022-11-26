@@ -11,7 +11,7 @@
       pb-10
     "
   >
-    <h2 class="mb-7 px-3 text-lg text-slate-800 font-nunito-bold">{{ title }}</h2>
+    <h2 class="mb-7 px-3 text-lg text-slate-800 font-rubik-bold">{{ title }}</h2>
     <Pie
       :chart-options="chartOptions"
       :chart-data="chartData"

@@ -11,30 +11,30 @@
 }
 
 /* 
- * Nunito
+ * Rubik
  */
 
- @font-face {
-  font-family: "NunitoMedium";
-  src: url("../fonts/Nunito-Medium.ttf");
+@font-face {
+  font-family: "RubikMedium";
+  src: url("../fonts/Rubik-Medium.ttf");
 }
 
 @font-face {
-  font-family: "NunitoLight";
-  src: url("../fonts/Nunito-Light.ttf");
+  font-family: "RubikLight";
+  src: url("../fonts/Rubik-Light.ttf");
 }
 
 @font-face {
-  font-family: "NunitoSemiBold";
-  src: url("../fonts/Nunito-SemiBold.ttf");
+  font-family: "RubikSemiBold";
+  src: url("../fonts/Rubik-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: "NunitoBold";
-  src: url("../fonts/Nunito-Bold.ttf");
+  font-family: "RubikBold";
+  src: url("../fonts/Rubik-Bold.ttf");
 }
 
 @font-face {
-  font-family: "NunitoRegular";
-  src: url("../fonts/Nunito-Regular.ttf");
+  font-family: "RubikRegular";
+  src: url("../fonts/Rubik-Regular.ttf");
 }

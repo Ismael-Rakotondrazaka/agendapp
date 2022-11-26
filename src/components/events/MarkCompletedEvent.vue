@@ -64,6 +64,7 @@ const markCompleted = async () => {
           status: "completed",
           startAt: props.event.startAt,
           endAt: props.event.endAt,
+          timezoneOffset: new Date().getTimezoneOffset(),
         };
 
         await eventStore.updateEvent(props.event._id, data);

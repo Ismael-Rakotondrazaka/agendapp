@@ -10,7 +10,7 @@
         w-full
         p-3
         text-lg
-        font-nunito-bold
+        font-rubik-bold
         text-left
         border-b
         hover:text-white hover:bg-primary

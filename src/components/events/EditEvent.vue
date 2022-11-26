@@ -185,6 +185,7 @@ const updateEventHandler = async () => {
         status: props.event.status,
         startAt: startAtDate.value,
         endAt: endAtDate.value,
+        timezoneOffset: new Date().getTimezoneOffset(),
       };
 
       await eventStore.updateEvent(props.event._id, data);

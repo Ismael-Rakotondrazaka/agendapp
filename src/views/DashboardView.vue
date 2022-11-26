@@ -25,7 +25,7 @@
                 w-full
                 p-3
                 text-lg
-                font-nunito-bold
+                font-rubik-bold
                 text-left
                 border-b
                 bg-red-40
@@ -44,7 +44,7 @@
                 w-full
                 p-3
                 text-lg
-                font-nunito-bold
+                font-rubik-bold
                 text-left
                 bg-red-40
                 rounded-b-md

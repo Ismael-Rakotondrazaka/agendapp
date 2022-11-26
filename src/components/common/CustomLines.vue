@@ -1,6 +1,6 @@
 <template>
   <div class="pb-10 bg-white border rounded-md border-slate-400 pt-7 shadow-md">
-    <h2 class="px-3 text-lg font-nunito-bold text-center mb-7 text-slate-800">
+    <h2 class="px-3 text-lg font-rubik-bold text-center mb-7 text-slate-800">
       {{ title }}
     </h2>
 
